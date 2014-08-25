@@ -282,6 +282,32 @@ CVAPI(void) cvReleaseCapture( CvCapture** capture );
 #define CV_CAP_PROP_GAIN          14
 #define CV_CAP_PROP_CONVERT_RGB   15
 
+// merge from OpenCV2.x
+#define CV_CAP_PROP_EXPOSURE             16 // old value is 15
+#define CV_CAP_PROP_WHITE_BALANCE_BLUE_U 17
+#define CV_CAP_PROP_RECTIFICATION        18
+#define CV_CAP_PROP_MONOCROME            19
+#define CV_CAP_PROP_SHARPNESS            20
+#define CV_CAP_PROP_AUTO_EXPOSURE        21 // exposure control done by camera,
+                                            // user can adjust refernce level
+                                            // using this feature
+#define CV_CAP_PROP_GAMMA                22
+#define CV_CAP_PROP_TEMPERATURE          23
+#define CV_CAP_PROP_TRIGGER              24
+#define CV_CAP_PROP_TRIGGER_DELAY        25
+#define CV_CAP_PROP_WHITE_BALANCE_RED_V  26
+#define CV_CAP_PROP_ZOOM                 27
+#define CV_CAP_PROP_FOCUS                28
+#define CV_CAP_PROP_GUID                 29
+#define CV_CAP_PROP_ISO_SPEED            30
+#define CV_CAP_PROP_MAX_DC1394           31
+#define CV_CAP_PROP_BACKLIGHT            32
+#define CV_CAP_PROP_PAN                  33
+#define CV_CAP_PROP_TILT                 34
+#define CV_CAP_PROP_ROLL                 35
+#define CV_CAP_PROP_IRIS                 36
+#define CV_CAP_PROP_SETTINGS             37
+
 
 /* retrieve or set capture properties */
 CVAPI(double) cvGetCaptureProperty( CvCapture* capture, int property_id );

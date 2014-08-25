@@ -185,44 +185,51 @@ set(ML_SRC
 	./ml/src/mltree.cpp
 )
 
-set(HIGHGUI_SRC
-	./highgui/src/bitstrm.cpp
-	./highgui/src/cvcap.cpp
-	#./highgui/src/cvcap_cmu.cpp
-	#./highgui/src/cvcap_dc1394.cpp
-	#./highgui/src/cvcap_ffmpeg.cpp
-	#./highgui/src/cvcap_gstreamer.cpp
-	./highgui/src/cvcap_images.cpp
-	#./highgui/src/cvcap_mil.cpp
-	#./highgui/src/cvcap_qt.cpp
-	#./highgui/src/cvcap_tyzx.cpp
-	#./highgui/src/cvcap_unicap.cpp
-	#./highgui/src/cvcap_v4l.cpp
-	./highgui/src/cvcap_vfw.cpp
-	#./highgui/src/cvcap_xine.cpp
-	#./highgui/src/grfmt_base.cpp
-	#./highgui/src/grfmt_bmp.cpp
-	#./highgui/src/grfmt_exr.cpp
-	#./highgui/src/grfmt_imageio.cpp
-	#./highgui/src/grfmt_jpeg.cpp
-	#./highgui/src/grfmt_jpeg2000.cpp
-	#./highgui/src/grfmt_png.cpp
-	#./highgui/src/grfmt_pxm.cpp
-	#./highgui/src/grfmt_sunras.cpp
-	#./highgui/src/grfmt_tiff.cpp
-	./highgui/src/image.cpp
-	#./highgui/src/loadsave.cpp
-	./highgui/src/loadsave_new.cpp
-	./highgui/src/precomp.cpp
-	./highgui/src/utils.cpp
-	./highgui/src/window.cpp
-	#./highgui/src/window_carbon.cpp
-	#./highgui/src/window_gtk.cpp
-	./highgui/src/window_w32.cpp
+if(WIN32 OR MINGW)
+	set(HIGHGUI_SRC
+		./highgui/src/bitstrm.cpp
+		./highgui/src/cvcap.cpp
+		#./highgui/src/cvcap_cmu.cpp
+		#./highgui/src/cvcap_dc1394.cpp
+		./highgui/src/cvcap_dshow.cpp
+		#./highgui/src/cvcap_ffmpeg.cpp
+		#./highgui/src/cvcap_gstreamer.cpp
+		./highgui/src/cvcap_images.cpp
+		#./highgui/src/cvcap_mil.cpp
+		#./highgui/src/cvcap_qt.cpp
+		#./highgui/src/cvcap_tyzx.cpp
+		#./highgui/src/cvcap_unicap.cpp
+		#./highgui/src/cvcap_v4l.cpp
+		./highgui/src/cvcap_vfw.cpp
+		#./highgui/src/cvcap_xine.cpp
+		./highgui/src/image.cpp
+		#./highgui/src/loadsave.cpp
+		./highgui/src/loadsave_new.cpp
+		./highgui/src/precomp.cpp
+		./highgui/src/utils.cpp
+		./highgui/src/window.cpp
+		#./highgui/src/window_carbon.cpp
+		#./highgui/src/window_gtk.cpp
+		./highgui/src/window_w32.cpp
 
-	#./highgui/src/cap_dshow.cpp
-	#./highgui/src/videoinput/videoinput.cpp
-)
+		./highgui/src/bmp/EasyBMP.cpp
+		./highgui/src/jpeg/jpgd.cpp
+		./highgui/src/jpeg/jpge.cpp
+		./highgui/src/png/lodepng.cpp
+	)
+endif()
+
+if(UNIX AND NOT MINGW)
+	set(HIGHGUI_SRC
+		# todo
+	)
+endif()
+
+if(APPLE)
+	set(HIGHGUI_SRC
+		# todo
+	)
+endif()
 
 #------------------------------------------------------------------------------
 
