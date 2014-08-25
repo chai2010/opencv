@@ -1554,9 +1554,13 @@ CVAPI(void) cvCreateTestSet( int type, CvMat** samples,
                  CvMat** responses,
                  int num_classes, ... );
 
+#if 0 // removed cvCompleteSymm (which is defined in cxcore since 1.1)
+
 /* Aij <- Aji for i > j if lower_to_upper != 0
               for i < j if lower_to_upper = 0 */
 CVAPI(void) cvCompleteSymm( CvMat* matrix, int lower_to_upper );
+
+#endif
 
 #endif
 

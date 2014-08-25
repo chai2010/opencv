@@ -1053,7 +1053,7 @@ typedef struct _CvPixelPosition32f
 
 /* Move by one pixel in specified direction                                     */
 /*  pos    - position structure                                                 */
-/*  shift  - direction ( it's value must be one of the CV_SHIFT_… constants ) */
+/*  shift  - direction ( it's value must be one of the CV_SHIFT_?constants ) */
 /*  cs     - number of the image channels                                       */
 #define CV_MOVE_PARAM( pos, shift, cs )                                             \
     ( (pos).currline += (pos).step_arr[(shift)>>2], (pos).x += ((shift)&3)-2,       \
@@ -1063,7 +1063,7 @@ typedef struct _CvPixelPosition32f
 /* Move by one pixel in specified direction with wrapping when the               */
 /* position achieves image boundary                                              */
 /*  pos    - position structure                                                  */
-/*  shift  - direction ( it's value must be one of the CV_SHIFT_… constants )  */
+/*  shift  - direction ( it's value must be one of the CV_SHIFT_?constants )  */
 /*  cs     - number of the image channels                                        */
 #define CV_MOVE_PARAM_WRAP( pos, shift, cs )                                        \
     ( (pos).currline += (pos).step_arr[(shift)>>2],                                 \

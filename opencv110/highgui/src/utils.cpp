@@ -42,6 +42,7 @@
 #include "_highgui.h"
 #include "utils.h"
 
+#if 0
 #if defined WIN32 && defined _MSC_VER && _MSC_VER >= 1200
 #if defined WIN64 && defined EM64T
     #ifdef _DEBUG
@@ -71,6 +72,7 @@
         #pragma comment(lib, "libtiff.lib")
         #pragma comment(lib, "zlib.lib")
     #endif
+#endif
 #endif
 #endif
 

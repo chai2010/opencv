@@ -364,6 +364,8 @@ CV_IMPL void cvRandRoundUni (CvMat* center,
 
 }
 
+#if 0 // removed cvCompleteSymm (which is defined in cxcore since 1.1)
+
 // By S. Dilman - end -
 
 /* Aij <- Aji for i > j if lower_to_upper != 0
@@ -432,6 +434,7 @@ void cvCompleteSymm( CvMat* matrix, int lower_to_upper )
     __END__;
 }
 
+#endif
 
 static int CV_CDECL
 icvCmpIntegers( const void* a, const void* b )

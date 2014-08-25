@@ -30,15 +30,5 @@ nmake install
 
 cd ..
 
-:: ----------------------------------------------------------------------------
-:: MinGW: generate libVideoInput.dll.a
-
-dlltool -dllname VideoInput.dll --def vi.def --output-lib libVideoInput.dll.a
-
-:: --------------------------------------------------------------------------
-:: move VideoInput.dll $GOPATH/bin
-
-copy VideoInput.dll ..
-
 :: --------------------------------------------------------------------------
 :: PAUSE

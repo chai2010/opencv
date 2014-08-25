@@ -92,8 +92,10 @@ struct CvVideoWriter
 #ifdef WIN32
 #define HAVE_VFW 1
 
+
+
 #if _MSC_VER >= 1400 && !defined WIN64
-#define HAVE_VIDEOINPUT 1
+//#define HAVE_VIDEOINPUT 1
 #endif
 
 /* uncomment to enable OpenEXR codec (will not compile under MSVC6) */
