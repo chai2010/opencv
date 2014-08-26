@@ -118,9 +118,12 @@ Thanks to:
    typedef BOOL WINBOOL;
 #endif
 
-#include "dshow/dshow.h"
-#include "dshow/dvdmedia.h"
-#include "dshow/bdatypes.h"
+#include <DShow.h>
+#include <Bdatypes.h>
+#include <OCIdl.h>
+//#include "dshow/dshow.h"
+//#include "dshow/dvdmedia.h"
+//#include "dshow/bdatypes.h"
 
 interface IEnumPIDMap : public IUnknown
 {

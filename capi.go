@@ -10,7 +10,6 @@ package opencv
 #cgo CFLAGS : -I./opencv110/cxcore/include -I./opencv110/cv/include -I./opencv110/cvaux/include  -I./opencv110/ml/include -I./opencv110/highgui/include
 #cgo LDFLAGS: -L. -lopencv110
 
-#include <cxcore.h>
-#include <cv.h>
+#include "opencv.h"
 */
 import "C"

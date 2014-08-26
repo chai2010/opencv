@@ -189,48 +189,38 @@ set(ML_SRC
 	./ml/src/mltree.cpp
 )
 
-if(WIN32 OR MINGW)
-	set(HIGHGUI_SRC
-		./highgui/src/bitstrm.cpp
-		./highgui/src/cvcap.cpp
-		#./highgui/src/cvcap_cmu.cpp
-		#./highgui/src/cvcap_dc1394.cpp
-		./highgui/src/cvcap_dshow.cpp
-		#./highgui/src/cvcap_ffmpeg.cpp
-		#./highgui/src/cvcap_gstreamer.cpp
-		./highgui/src/cvcap_images.cpp
-		#./highgui/src/cvcap_mil.cpp
-		#./highgui/src/cvcap_qt.cpp
-		#./highgui/src/cvcap_tyzx.cpp
-		#./highgui/src/cvcap_unicap.cpp
-		#./highgui/src/cvcap_v4l.cpp
-		./highgui/src/cvcap_vfw.cpp
-		#./highgui/src/cvcap_xine.cpp
-		./highgui/src/image.cpp
-		#./highgui/src/loadsave.cpp
-		./highgui/src/loadsave_new.cpp
-		./highgui/src/precomp.cpp
-		./highgui/src/utils.cpp
-		./highgui/src/window.cpp
-		#./highgui/src/window_carbon.cpp
-		#./highgui/src/window_gtk.cpp
-		./highgui/src/window_w32.cpp
+set(HIGHGUI_SRC_COMMON
+	./highgui/src/EasyBMP.cpp
+	./highgui/src/bitstrm.cpp
+	./highgui/src/cvcap.cpp
+	./highgui/src/cvcap_images.cpp
+	./highgui/src/image.cpp
+	./highgui/src/jpgd.cpp
+	./highgui/src/jpge.cpp
+	./highgui/src/loadsave_new.cpp
+	./highgui/src/lodepng.cpp
+	./highgui/src/precomp.cpp
+	./highgui/src/utils.cpp
+	./highgui/src/window.cpp
+)
 
-		./highgui/src/bmp/EasyBMP.cpp
-		./highgui/src/jpeg/jpgd.cpp
-		./highgui/src/jpeg/jpge.cpp
-		./highgui/src/png/lodepng.cpp
+if(WIN32 OR MINGW)
+	set(HIGHGUI_SRC ${HIGHGUI_SRC_COMMON}
+		./highgui/src/windows/cvcap_dshow.cpp
+		./highgui/src/windows/cvcap_vfw.cpp
+		./highgui/src/windows/window_w32.cpp
+
 	)
 endif()
 
 if(UNIX AND NOT MINGW)
-	set(HIGHGUI_SRC
+	set(HIGHGUI_SRC ${HIGHGUI_SRC_COMMON}
 		# todo
 	)
 endif()
 
 if(APPLE)
-	set(HIGHGUI_SRC
+	set(HIGHGUI_SRC ${HIGHGUI_SRC_COMMON}
 		# todo
 	)
 endif()
@@ -243,7 +233,6 @@ add_library(OpenCVLib SHARED
 	${CVAUX_SRC}
 	${ML_SRC}
 	${HIGHGUI_SRC}
-	./opencv.def
 )
 
 set_target_properties(OpenCVLib
@@ -263,7 +252,7 @@ install(TARGETS OpenCVLib
 #------------------------------------------------------------------------------
 
 add_executable(OpenCVApp
-	./hello.c
+	./hello.cpp
 )
 
 set_target_properties(OpenCVApp

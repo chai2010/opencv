@@ -25,6 +25,7 @@ Example
 
 	import (
 		"fmt"
+		"log"
 		"os"
 
 		opencv "github.com/chai2010/opencv.go"
@@ -38,7 +39,7 @@ Example
 
 		image := opencv.LoadImage(filename)
 		if image == nil {
-			panic("LoadImage fail")
+			log.Fatalf("LoadImage %s failed!", filename)
 		}
 		defer image.Release()
 
@@ -69,6 +70,23 @@ Screenshots
 
 ![](https://raw.githubusercontent.com/chai2010/opencv.go/master/examples/screenshot/go-inpaint.jpg)
 
+TODO
+====
+
+Working in progress:
+
+	cxcore
+	cxcore/cvver.h           done
+	cxcore/cvwimage.h        ingore
+	cxcore/cxcore.h
+	cxcore/cxcore.hpp        ingore
+	cxcore/cxerror.h         done
+	cxcore/cxmisc.h
+	cxcore/cxtypes.h
+
+	cv                       ?
+
+	highgui                  ?
 
 BUGS
 ====

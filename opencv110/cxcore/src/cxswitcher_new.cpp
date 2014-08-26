@@ -109,6 +109,8 @@ icvInitProcessorInfo( CvProcessorInfo* cpu_info )
     memset( cpu_info, 0, sizeof(*cpu_info) );
     cpu_info->model = CV_PROC_GENERIC;
 
+#if 0 // disabled
+
 #if defined WIN32 || defined WIN64
     SYSTEM_INFO sys;
     GetSystemInfo( &sys );
@@ -206,6 +208,7 @@ icvInitProcessorInfo( CvProcessorInfo* cpu_info )
         else
             assert( cpu_info->frequency > 1 );
     }
+#endif
 #endif
 }
 

@@ -141,16 +141,6 @@ func (p *IplImage) GetImageData() []byte {
 	return ((*[1 << 30]byte)(unsafe.Pointer(p.imageData)))[:p.GetImageSize()]
 }
 
-func (p *IplImage) GetROI() *IplROI {
-	return (*IplROI)(p.roi)
-}
-func (p *IplImage) SetROI(roi *IplROI) {
-	if p.roi != nil {
-		C.free(unsafe.Pointer(p.roi))
-	}
-	p.roi = (*C.IplROI)(roi)
-}
-
 type IplROI C.IplROI
 
 func (roi *IplROI) Init(coi, xOffset, yOffset, width, height int) {

@@ -8,6 +8,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/chai2010/opencv.go"
@@ -21,7 +22,7 @@ func main() {
 
 	image := opencv.LoadImage(filename)
 	if image == nil {
-		panic("LoadImage fail")
+		log.Fatalf("LoadImage %s failed!", filename)
 	}
 	defer image.Release()
 
