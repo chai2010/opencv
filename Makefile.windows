@@ -1,0 +1,33 @@
+# Copyright 2014 <chaishushan{AT}gmail.com>. All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+TARG=opencv110
+
+CXCORE_DIR=./opencv110/cxcore
+CXCORE_INC=-I$(CXCORE_DIR)/include -I$(CXCORE_DIR)/src
+CXCORE_CPP=$(wildcard $(CXCORE_DIR)/src/*.cpp)
+CXCORE_OBJ=$(patsubst %.cpp,%.o,$(CXCORE_CPP))
+
+CV_DIR=./opencv110/cv
+CV_INC=-I$(CV_DIR)/include -I$(CV_DIR)/include
+CV_CPP=$(wildcard $(CV_DIR)/src/*.cpp)
+CV_OBJ=$(patsubst %.cpp,%.o,$(CV_CPP))
+
+O_FILES=$(CXCORE_OBJ) $(CV_OBJ)
+
+CC=g++
+CCFLAGS= $(CXCORE_INC) $(CV_INC) -DCVAPI_EXPORTS
+LDFLAGS=-lOle32 -lStrmiids -lOleAut32 -lUuid -lComctl32 -lVfw32
+
+default: $(O_FILES)
+	$(CC) -shared -o $(TARG).dll $(O_FILES) -Wl,--out-implib,lib$(TARG).a $(LDFLAGS) 
+
+clean:
+	-rm $(O_FILES)
+	-rm *.dll
+	-rm *.a
+
+%.o: %.cpp
+	$(CC) -c $(CCFLAGS) $< -o $@
+

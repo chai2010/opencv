@@ -159,7 +159,7 @@ icvInitProcessorInfo( CvProcessorInfo* cpu_info )
 #ifdef WIN64
         if( sys.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_INTEL &&
             sys.dwProcessorType == PROCESSOR_ARCHITECTURE_IA64 )
-            cpu_info->model = CV_PROC_IA64_GENERIC;
+            cpu_info->model = CV_PROC_IA64;
 #endif
         if( QueryPerformanceFrequency( &freq ) ) 
             cpu_info->frequency = (double)freq.QuadPart;

@@ -6,6 +6,10 @@ project(OpenCV)
 
 #------------------------------------------------------------------------------
 
+add_definitions(
+  -DCVAPI_EXPORTS
+)
+
 include_directories(AFTER
 	./cxcore/include
 	./cv/include
@@ -243,7 +247,7 @@ add_library(OpenCVLib SHARED
 )
 
 set_target_properties(OpenCVLib
-	PROPERTIES OUTPUT_NAME "opencv.go"
+	PROPERTIES OUTPUT_NAME "opencv110"
 )
 
 target_link_libraries(OpenCVLib
