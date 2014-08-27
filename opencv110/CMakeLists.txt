@@ -210,6 +210,8 @@ if(WIN32 OR MINGW)
 		./highgui/src/windows/cvcap_vfw.cpp
 		./highgui/src/windows/window_w32.cpp
 
+		./highgui/src/windows/videoInput_capi.cpp
+		./highgui/src/windows/videoInput.cpp
 	)
 endif()
 
@@ -251,22 +253,19 @@ install(TARGETS OpenCVLib
 
 #------------------------------------------------------------------------------
 
-add_executable(OpenCVApp
-	./hello.cpp
+add_executable(hello
+	./examples/hello.cpp
 )
-
-set_target_properties(OpenCVApp
-	PROPERTIES OUTPUT_NAME "OpenCVApp"
-)
-
-target_link_libraries(OpenCVApp
+target_link_libraries(hello
 	OpenCVLib
 )
 
-install(TARGETS OpenCVApp
-	RUNTIME DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}
-	LIBRARY DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}
-	ARCHIVE DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}
+add_executable(cam
+	./examples/cam.cpp
 )
+target_link_libraries(cam
+	OpenCVLib
+)
+
 
 #------------------------------------------------------------------------------
