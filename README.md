@@ -1,5 +1,5 @@
-go-opencv
-=========
+Go bindings for OpenCV1.1
+=========================
 
 PkgDoc: [http://godoc.org/github.com/chai2010/opencv.go](http://godoc.org/github.com/chai2010/opencv.go)
 

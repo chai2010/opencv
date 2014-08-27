@@ -1,8 +1,10 @@
-// Copyright 2011 <chaishushan@gmail.com>. All rights reserved.
+// Copyright 2014 <chaishushan{AT}gmail.com>. All rights reserved.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
 // +build ingore
+
+// TODO(chai2010):
 
 package main
 
@@ -12,6 +14,11 @@ import (
 	"os"
 
 	opencv "github.com/chai2010/opencv.go"
+)
+
+var (
+	storage *opencv.CvMemStorage
+	cascade *opencv.CvHaarClassifierCascade
 )
 
 func main() {

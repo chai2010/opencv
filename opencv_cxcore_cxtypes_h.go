@@ -502,31 +502,31 @@ func ScalarAll(val0 float64) Scalar {
 
 /******************************** Memory storage ****************************************/
 
-type MemBlock C.CvMemBlock
-type MemStorage C.CvMemStorage
-type MemStoragePos C.CvMemStoragePos
+type CvMemBlock C.CvMemBlock
+type CvMemStorage C.CvMemStorage
+type CvMemStoragePos C.CvMemStoragePos
 
 /*********************************** Sequence *******************************************/
 
-type SeqBlock C.CvSeqBlock
-type Seq C.CvSeq
+type CvSeqBlock C.CvSeqBlock
+type CvSeq C.CvSeq
 
 /*************************************** Set ********************************************/
 
-type Set C.CvSet
+type CvSet C.CvSet
 
 /************************************* Graph ********************************************/
 
-type GraphEdge C.CvGraphEdge
-type GraphVtx C.CvGraphVtx
+type CvGraphEdge C.CvGraphEdge
+type CvGraphVtx C.CvGraphVtx
 
-type GraphVtx2D C.CvGraphVtx2D
-type Graph C.CvGraph
+type CvGraphVtx2D C.CvGraphVtx2D
+type CvGraph C.CvGraph
 
 /*********************************** Chain/Countour *************************************/
 
-type Chain C.CvChain
-type Contour C.CvContour
+type CvChain C.CvChain
+type CvContour C.CvContour
 
 /****************************************************************************************\
 *                                    Sequence types                                      *
@@ -536,8 +536,8 @@ type Contour C.CvContour
 /*                            Sequence writer & reader                                  */
 /****************************************************************************************/
 
-type SeqWriter C.CvSeqWriter
-type SeqReader C.CvSeqReader
+type CvSeqWriter C.CvSeqWriter
+type CvSeqReader C.CvSeqReader
 
 /****************************************************************************************/
 /*                                Operations on sequences                               */
@@ -548,7 +548,7 @@ type SeqReader C.CvSeqReader
 \****************************************************************************************/
 
 /* "black box" file storage */
-type FileStorage C.CvFileStorage
+type CvFileStorage C.CvFileStorage
 
 /* Storage flags: */
 const (
@@ -559,7 +559,7 @@ const (
 	CV_STORAGE_APPEND       = C.CV_STORAGE_APPEND
 )
 
-type AttrList C.CvAttrList
+type CvAttrList C.CvAttrList
 
 /*****************************************************************************\
 *                                 --- END ---                                 *

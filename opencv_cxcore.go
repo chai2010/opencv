@@ -10,3 +10,24 @@ package opencv
 #include <cxcore.h>
 */
 import "C"
+import (
+	"image"
+	"image/color"
+)
+
+func (p *IplImage) ColorModel() color.Model {
+	switch p.GetChannels() {
+	case 1:
+	case 3:
+	case 4:
+	}
+	return nil
+}
+
+func (p *IplImage) Bounds() image.Rectangle {
+	return image.Rect(0, 0, p.GetWidth(), p.GetHeight())
+}
+
+func (p *IplImage) At(x, y int) color.Color {
+	return nil
+}

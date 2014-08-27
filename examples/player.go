@@ -8,6 +8,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	opencv "github.com/chai2010/opencv.go"
@@ -24,7 +25,7 @@ func main() {
 
 	cap := opencv.NewFileCapture(filename)
 	if cap == nil {
-		panic("can not open video")	
+		log.Fatalf("can not open video %s", filename)
 	}
 	defer cap.Release()
 
@@ -57,23 +58,28 @@ func main() {
 	for {
 		if !stop {
 			img := cap.QueryFrame()
-			if img == nil { break }
+			if img == nil {
+				break
+			}
 
 			frame_pos := int(cap.GetProperty(opencv.CV_CAP_PROP_POS_FRAMES))
-			if frame_pos >= frames { break }
+			if frame_pos >= frames {
+				break
+			}
 			win.SetTrackbarPos("Seek", frame_pos)
-		
+
 			win.ShowImage(img)
-			key := opencv.WaitKey(1000/fps)
-			if key == 27 { os.Exit(0) }
+			key := opencv.WaitKey(1000 / fps)
+			if key == 27 {
+				os.Exit(0)
+			}
 		} else {
 			key := opencv.WaitKey(20)
-			if key == 27 { os.Exit(0) }
+			if key == 27 {
+				os.Exit(0)
+			}
 		}
 	}
 
-
 	opencv.WaitKey(0)
 }
-
-

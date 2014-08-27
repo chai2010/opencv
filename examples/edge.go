@@ -8,25 +8,26 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	opencv "github.com/chai2010/opencv.go"
 )
 
 func main() {
-	filename := "../images/lena.jpg"
+	filename := "../testdata/lena.jpg"
 	if len(os.Args) == 2 {
 		filename = os.Args[1]
 	}
 
 	image := opencv.LoadImage(filename)
 	if image == nil {
-		panic("LoadImage fail")
+		log.Fatalf("LoadImage %s failed!", filename)
 	}
 	defer image.Release()
 
-	w := image.Width()
-	h := image.Height()
+	w := image.GetWidth()
+	h := image.GetHeight()
 
 	// Create the output image
 	cedge := opencv.CreateImage(w, h, opencv.IPL_DEPTH_8U, 3)
@@ -77,5 +78,3 @@ func main() {
 
 	os.Exit(0)
 }
-
-

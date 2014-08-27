@@ -7,7 +7,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 
@@ -20,14 +19,14 @@ func main() {
 
 	cam := opencv.NewCameraCapture(0)
 	if cam == nil {
-		panic("can not open camera")
+		log.Fatalf("can not open camera")
 	}
 	defer cam.Release()
 
 	win.CreateTrackbar("Thresh", 1, 100, func(pos int, param ...interface{}) {
 		for {
 			if cam.GrabFrame() {
-				img := cam.RetrieveFrame(1)
+				img := cam.RetrieveFrame()
 				if img != nil {
 					ProcessImage(img, win, pos)
 				} else {
@@ -44,8 +43,8 @@ func main() {
 }
 
 func ProcessImage(img *opencv.IplImage, win *opencv.Window, pos int) error {
-	w := img.Width()
-	h := img.Height()
+	w := img.GetWidth()
+	h := img.GetHeight()
 
 	// Create the output image
 	cedge := opencv.CreateImage(w, h, opencv.IPL_DEPTH_8U, 3)

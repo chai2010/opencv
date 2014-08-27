@@ -8,20 +8,21 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	opencv "github.com/chai2010/opencv.go"
 )
 
 func main() {
-	filename := "../images/fruits.jpg"
+	filename := "../testdata/fruits.jpg"
 	if len(os.Args) == 2 {
 		filename = os.Args[1]
 	}
 
 	img0 := opencv.LoadImage(filename)
 	if img0 == nil {
-		panic("LoadImage fail")
+		log.Fatalf("LoadImage %s failed!", filename)
 	}
 	defer img0.Release()
 
@@ -34,7 +35,7 @@ func main() {
 
 	img := img0.Clone()
 	inpainted := img0.Clone()
-	inpaint_mask := opencv.CreateImage(img0.Width(), img0.Height(), 8, 1)
+	inpaint_mask := opencv.CreateImage(img0.GetWidth(), img0.GetHeight(), 8, 1)
 
 	opencv.Zero(inpaint_mask)
 	//opencv.Zero( inpainted )
@@ -92,5 +93,3 @@ func main() {
 	}
 	os.Exit(0)
 }
-
-
