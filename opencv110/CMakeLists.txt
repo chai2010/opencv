@@ -210,6 +210,7 @@ if(WIN32 OR MINGW)
 		./highgui/src/windows/cvcap_vfw.cpp
 		./highgui/src/windows/window_w32.cpp
 
+		./highgui/src/windows/cap_ffmpeg.cpp
 		./highgui/src/windows/videoInput_capi.cpp
 		./highgui/src/windows/videoInput.cpp
 	)
@@ -257,6 +258,13 @@ add_executable(hello
 	./examples/hello.cpp
 )
 target_link_libraries(hello
+	OpenCVLib
+)
+
+add_executable(video
+	./examples/video.cpp
+)
+target_link_libraries(video
 	OpenCVLib
 )
 

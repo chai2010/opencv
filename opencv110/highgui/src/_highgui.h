@@ -157,12 +157,12 @@ CvCapture* cvCreateFileCapture_XINE (const char* filename);
 CvCapture * cvCreateCapture_GStreamer(int type, const char *filename);
 #endif
 
-#ifdef HAVE_FFMPEG
-CvCapture* cvCreateFileCapture_FFMPEG (const char* filename);
+//#ifdef HAVE_FFMPEG
+CvCapture* cvCreateFileCapture_FFMPEG_proxy (const char* filename);
 
-CvVideoWriter* cvCreateVideoWriter_FFMPEG ( const char* filename, int fourcc,
+CvVideoWriter* cvCreateVideoWriter_FFMPEG_proxy ( const char* filename, int fourcc,
                                             double fps, CvSize frameSize, int is_color );
-#endif
+//#endif
 
 #ifdef HAVE_QUICKTIME
 CvCapture * cvCreateFileCapture_QT (const char  * filename);

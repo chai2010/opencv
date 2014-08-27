@@ -239,10 +239,10 @@ CV_IMPL CvCapture * cvCreateFileCapture (const char * filename)
         result = cvCreateCapture_GStreamer (CV_CAP_GSTREAMER_FILE, filename);
     #endif
 
-    #ifdef HAVE_FFMPEG
+    //#ifdef HAVE_FFMPEG
     if (! result)
-        result = cvCreateFileCapture_FFMPEG (filename);
-    #endif
+        result = cvCreateFileCapture_FFMPEG_proxy (filename);
+    //#endif
 
     #ifdef HAVE_QUICKTIME
     if (! result)
@@ -276,10 +276,10 @@ CV_IMPL CvVideoWriter* cvCreateVideoWriter( const char* filename, int fourcc,
 		result = cvCreateVideoWriter_XINE(filename, fourcc, fps, frameSize, is_color);
 	#endif
 */
-	#ifdef HAVE_FFMPEG
+	//#ifdef HAVE_FFMPEG
 	if(!result)
-		result = cvCreateVideoWriter_FFMPEG(filename, fourcc, fps, frameSize, is_color);
-	#endif
+		result = cvCreateVideoWriter_FFMPEG_proxy(filename, fourcc, fps, frameSize, is_color);
+	//#endif
 
 	#ifdef HAVE_QUICKTIME
 	if(!result)

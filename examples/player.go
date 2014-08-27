@@ -15,12 +15,9 @@ import (
 )
 
 func main() {
-	filename := "../data/???.avi"
-	if len(os.Args) == 2 {
+	filename := "./test.avi"
+	if len(os.Args) >= 2 {
 		filename = os.Args[1]
-	} else {
-		fmt.Printf("Usage: go run player.go videoname\n")
-		os.Exit(0)
 	}
 
 	cap := opencv.NewFileCapture(filename)
@@ -69,17 +66,14 @@ func main() {
 			win.SetTrackbarPos("Seek", frame_pos)
 
 			win.ShowImage(img)
-			key := opencv.WaitKey(1000 / fps)
-			if key == 27 {
-				os.Exit(0)
+
+			if key := opencv.WaitKey(1000 / fps); key == 27 {
+				break
 			}
 		} else {
-			key := opencv.WaitKey(20)
-			if key == 27 {
-				os.Exit(0)
+			if key := opencv.WaitKey(20); key == 27 {
+				break
 			}
 		}
 	}
-
-	opencv.WaitKey(0)
 }

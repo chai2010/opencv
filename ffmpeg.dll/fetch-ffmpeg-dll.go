@@ -7,6 +7,7 @@
 package main
 
 import (
+	"crypto/tls"
 	"fmt"
 	"io"
 	"log"
@@ -15,9 +16,9 @@ import (
 )
 
 // https://github.com/Itseez/opencv/tree/master/3rdparty/ffmpeg
-// https://github.com/Itseez/opencv/blob/master/3rdparty/ffmpeg/opencv_ffmpeg.dll?raw=true
-// https://github.com/Itseez/opencv/blob/master/3rdparty/ffmpeg/opencv_ffmpeg_64.dll?raw=true
-const baseURL = "https://github.com/Itseez/opencv/blob/master/3rdparty/ffmpeg/"
+// https://raw.githubusercontent.com/Itseez/opencv/master/3rdparty/ffmpeg/opencv_ffmpeg.dll
+// https://raw.githubusercontent.com/Itseez/opencv/master/3rdparty/ffmpeg/opencv_ffmpeg_64.dll
+const baseURL = "https://raw.githubusercontent.com/Itseez/opencv/master/3rdparty/ffmpeg/"
 
 func main() {
 	var err error
@@ -46,11 +47,18 @@ func GetFfmpegDll(filename string) (errRet error) {
 			os.Remove(filename)
 		}
 	}()
-	resp, err := http.Get(baseURL + filename + "?raw=true")
+
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
+	client := &http.Client{Transport: tr}
+
+	resp, err := client.Get(baseURL + filename)
 	if err != nil {
 		return fmt.Errorf("failed to download %s: %s", baseURL+filename, err)
 	}
 	defer resp.Body.Close()
+
 	_, err = io.Copy(f, resp.Body)
 	if err != nil {
 		return fmt.Errorf("failed to write %s: %s", filename, err)
