@@ -59,40 +59,25 @@ static bool icvSaveFileData(const char* name, const char* data, int size) {
 
 // ----------------------------------------------------------------------------
 
-static bool icvDecodeJpg(
-	std::string* dst, const char* data, int size, int* width, int* height, int* channels) {
-	if(dst == NULL || data == NULL || size <= 0) {
-		return false;
-	}
-	if(width == NULL || height == NULL || channels == NULL) {
-		return false;
-	}
-
-	unsigned char * p = jpgd::decompress_jpeg_image_from_memory(
-		(const unsigned char *)data, size,
-		width, height, channels,
-		3
+static IplImage* icvDecodeJpg(const std::string& data, int iscolor)
+{
+	int channels = iscolor? 3: 1;
+	int width, height, actual_comps;
+	unsigned char * d = jpgd::decompress_jpeg_image_from_memory(
+		(const unsigned char*)data.data(), data.size(),
+		&width, &height, &actual_comps, channels
 	);
-	if(p == NULL) {
-		return false;
-	}
-	if(*width <= 0 || *height <= 0 || (*channels != 1 && *channels != 3)) {
-		free(p);
-		return false;
+	if(d == NULL) {
+		return NULL;
 	}
 
-	if(*channels == 1) {
-		dst->resize((*width)*(*height));
-		unsigned char* pDst = (unsigned char*)dst->data();
-		for(int i = 0; i < (*width)*(*height); ++i) {
-			pDst[i] = p[i*3];
-		}
-	} else {
-		dst->assign((const char*)p, (*width)*(*height)*(*channels));
-	}
-	free(p);
+	IplImage* m = cvCreateImage(cvSize(width, height), IPL_DEPTH_8U, channels);
+	memcpy(m->imageData, d, width*height*channels);
+	m->widthStep = width*channels;
+	free(d);
 
-	return true;
+	cvConvertImage(m, m, CV_CVTIMG_SWAP_RB);
+	return m;
 }
 
 static bool icvEncodeJpg(
@@ -319,40 +304,71 @@ int cvHaveImageWriter( const char* filename )
 CV_IMPL
 IplImage* cvLoadImage( const char* filename, int iscolor )
 {
+	if(!filename || !filename[0]) {
+		return NULL;
+	}
+
 	std::string data;
 	if(!icvLoadFileData(filename, &data)) {
 		return NULL;
 	}
 
-	int channels = iscolor? 3: 1;
-	int width, height, actual_comps;
-	unsigned char * d = jpgd::decompress_jpeg_image_from_memory(
-		(const unsigned char*)data.data(), data.size(),
-		&width, &height, &actual_comps, channels
-	);
-	if(d == NULL) {
-		return NULL;
+	std::string lowerName = icvLowerString(filename);
+	if(icvHasSuffixString(lowerName, ".jpg")) {
+		return icvDecodeJpg(data, iscolor);
+	}
+	if(icvHasSuffixString(lowerName, ".jpeg")) {
+		return icvDecodeJpg(data, iscolor);
 	}
 
-	IplImage* m = cvCreateImage(cvSize(width, height), IPL_DEPTH_8U, channels);
-	memcpy(m->imageData, d, width*channels);
-	m->widthStep = width*channels;
-	free(d);
-
-	printf("cvLoadImage: %s, w = %d, h = %d\n", filename, width, height);
-	return m;
+	return NULL;
 }
 
 CV_IMPL
 CvMat* cvLoadImageM( const char* filename, int iscolor )
 {
+	if(!filename || !filename[0]) {
+		return NULL;
+	}
 	return NULL;//cvLoadImageM_goproxy(filename, iscolor);
 }
 
 CV_IMPL
 int cvSaveImage( const char* filename, const CvArr* arr )
 {
-	return 0;//cvSaveImage_goproxy(filename, arr);
+	if(!filename || !filename[0] || !arr) {
+		return 0;
+	}
+
+    if(!CV_IS_IMAGE(arr)) {
+		return 0;
+	}
+	IplImage* img = (IplImage*)arr;
+	std::string data;
+
+	if(img->depth != IPL_DEPTH_8U) {
+		return 0;
+	}
+
+	std::string lowerName = icvLowerString(filename);
+	if(icvHasSuffixString(lowerName, ".jpg") || icvHasSuffixString(lowerName, ".jpeg")) {
+		cvConvertImage(img, img, CV_CVTIMG_SWAP_RB);
+		if(!icvEncodeJpg(&data,
+			img->imageData, img->imageSize,
+			img->width, img->height, img->nChannels,
+			90, img->widthStep
+		)) {
+			cvConvertImage(img, img, CV_CVTIMG_SWAP_RB);
+			return 0;
+		}
+		cvConvertImage(img, img, CV_CVTIMG_SWAP_RB);
+	}
+
+	if(!icvSaveFileData(filename, data.data(), data.size())) {
+		return 0;
+	}
+
+	return 1;
 }
 
 // ----------------------------------------------------------------------------
