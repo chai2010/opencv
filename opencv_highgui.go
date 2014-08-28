@@ -504,9 +504,9 @@ func (capture *Capture) SetProperty(property_id int, value float64) int {
 type VideoWriter C.CvVideoWriter
 
 // Prototype for CV_FOURCC so that swig can generate wrapper without mixing up the define
-func FOURCC(c1, c2, c3, c4 int8) uint32 {
+func FOURCC(c1, c2, c3, c4 int8) int32 {
 	rv := C.GoOpenCV_FOURCC_(C.int(c1), C.int(c2), C.int(c3), C.int(c4))
-	return uint32(rv)
+	return int32(rv)
 }
 
 const (
@@ -518,7 +518,7 @@ const (
 
 /* initialize video file writer */
 func NewVideoWriter(filename string,
-	fourcc int, fps float32,
+	fourcc int32, fps float32,
 	frame_width, frame_height,
 	is_color int) *VideoWriter {
 

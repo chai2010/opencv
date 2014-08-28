@@ -10,12 +10,23 @@ int main(int argc, char* argv[]) {
 		printf("open camera failed!\n");
 		return -1;
 	}
-	cvSaveImage("cam.jpg", cvQueryFrame(cap));
+	IplImage* img = cvQueryFrame(cap);
+	cvSaveImage("cam.jpg", img);
+
+	CvVideoWriter* writer = cvCreateVideoWriter(
+		"cam.avi", CV_FOURCC('M', 'J', 'P', 'G'), 30,
+		cvSize(img->width, img->height), 1
+	);
+	if(writer == NULL) {
+		printf("create writer failed!\n");
+		return -1;
+	}
 
 	const char* winName = "Go-OpenCV";
 	cvNamedWindow(winName, 1);
 	for(;;) {
 		IplImage* img = cvQueryFrame(cap);
+		cvWriteFrame(writer, img);
 		cvShowImage(winName, img);
 		if(cvWaitKey(50) == 27) {
 			break;
@@ -23,6 +34,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	cvDestroyWindow(winName);
+	cvReleaseVideoWriter(&writer);
 	cvReleaseCapture(&cap);
 	return 0;
 }
