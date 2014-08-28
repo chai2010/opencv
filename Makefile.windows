@@ -29,6 +29,8 @@ HIGHGUI_INC=-I$(HIGHGUI_DIR)/include -I$(HIGHGUI_DIR)/src
 HIGHGUI_CPP=$(wildcard $(HIGHGUI_DIR)/src/*.cpp) $(wildcard $(HIGHGUI_DIR)/src/windows/*.cpp)
 HIGHGUI_OBJ=$(patsubst %.cpp,%.o,$(HIGHGUI_CPP))
 
+VIDEOINPUT_DEF=$(HIGHGUI_DIR)/src/windows/videoInput_capi.def
+
 OPENCV_INC=$(CXCORE_INC) $(CV_INC) $(CVAUX_INC) $(ML_INC) $(HIGHGUI_INC)
 OPENCV_OBJ=$(CXCORE_OBJ) $(CV_OBJ) $(CVAUX_OBJ) $(ML_OBJ) $(HIGHGUI_OBJ)
 
@@ -36,8 +38,8 @@ CC=g++
 CCFLAGS=$(OPENCV_INC) -DSTRSAFE_NO_DEPRECATE -DCVAPI_EXPORTS
 LDFLAGS=-lGdi32 -lOle32 -lStrmiids -lOleAut32 -lUuid -lComctl32 -lVfw32
 
-default: $(OPENCV_OBJ)
-	$(CC) -shared -o $(TARG).dll $(OPENCV_OBJ) -Wl,--out-implib,lib$(TARG).a $(LDFLAGS) 
+default: $(OPENCV_OBJ) $(VIDEOINPUT_DEF)
+	$(CC) -shared -o $(TARG).dll $(OPENCV_OBJ) $(VIDEOINPUT_DEF) -Wl,--out-implib,lib$(TARG).a $(LDFLAGS) 
 
 clean:
 	-rm $(OPENCV_OBJ)
