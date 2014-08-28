@@ -32,7 +32,7 @@ Example
 	)
 
 	func main() {
-		filename := "../images/lena.jpg"
+		filename := "./testdata/lena.jpg"
 		if len(os.Args) == 2 {
 			filename = os.Args[1]
 		}
