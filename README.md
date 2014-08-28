@@ -64,29 +64,16 @@ Screenshots
 
 **Edge**
 
-![](https://raw.githubusercontent.com/chai2010/opencv.go/master/examples/screenshot/go-edge.jpg)
+![](https://raw.githubusercontent.com/chai2010/opencv.go/master/examples/screenshot/windows/edge.jpg)
 
 **Inpaint**
 
-![](https://raw.githubusercontent.com/chai2010/opencv.go/master/examples/screenshot/go-inpaint.jpg)
+![](https://raw.githubusercontent.com/chai2010/opencv.go/master/examples/screenshot/windows/inpaint.jpg)
 
-TODO
-====
+**Video Player**
 
-Working in progress:
+![](https://raw.githubusercontent.com/chai2010/opencv.go/master/examples/screenshot/windows/player.jpg)
 
-	cxcore
-	cxcore/cvver.h           done
-	cxcore/cvwimage.h        ingore
-	cxcore/cxcore.h
-	cxcore/cxcore.hpp        ingore
-	cxcore/cxerror.h         done
-	cxcore/cxmisc.h
-	cxcore/cxtypes.h
-
-	cv                       ?
-
-	highgui                  ?
 
 BUGS
 ====

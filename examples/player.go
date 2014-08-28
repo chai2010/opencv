@@ -15,7 +15,7 @@ import (
 )
 
 func main() {
-	filename := "./test.avi"
+	filename := "../testdata/test.avi"
 	if len(os.Args) >= 2 {
 		filename = os.Args[1]
 	}
@@ -37,9 +37,9 @@ func main() {
 		if flags&opencv.CV_EVENT_LBUTTONDOWN != 0 {
 			stop = !stop
 			if stop {
-				fmt.Printf("status: stop")
+				fmt.Printf("status: stop\n")
 			} else {
-				fmt.Printf("status: palying")
+				fmt.Printf("status: palying\n")
 			}
 		}
 	})
