@@ -7,30 +7,42 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
-	"runtime"
 
 	opencv "github.com/chai2010/opencv.go"
 )
 
-func main() {
-	runtime.LockOSThread()
-	win := opencv.NewWindow("Go-OpenCV Webcam")
-	defer win.Destroy()
+var (
+	flagCamNum = flag.Int("cam-num", 1, "set camera num")
+)
 
-	cam := opencv.NewCameraCapture(0)
-	if cam == nil {
-		log.Fatalf("can not open camera")
+func main() {
+	flag.Parse()
+
+	cameras := make([]*opencv.Capture, *flagCamNum)
+	for i := 0; i < len(cameras); i++ {
+		cameras[i] = opencv.NewCameraCapture(i)
+		if cameras[i] == nil {
+			log.Fatalf("can not open camera %d", i)
+		}
+		defer cameras[i].Release()
 	}
-	defer cam.Release()
+
+	windows := make([]*opencv.Window, *flagCamNum)
+	for i := 0; i < len(windows); i++ {
+		windows[i] = opencv.NewWindow(fmt.Sprintf("Camera: %d", i))
+		defer windows[i].Destroy()
+	}
 
 	for i := 0; ; i++ {
-		if m := cam.QueryFrame(); m != nil {
-			win.ShowImage(m)
+		for idx := 0; idx < *flagCamNum; idx++ {
+			if m := cameras[idx].QueryFrame(); m != nil {
+				fmt.Printf("camera(%d): Frame %d\n", idx, i)
+				windows[idx].ShowImage(m)
+			}
 		}
-		fmt.Println(i)
-
 		if key := opencv.WaitKey(30); key == 27 {
 			break
 		}

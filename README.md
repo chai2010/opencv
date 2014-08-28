@@ -74,6 +74,10 @@ Screenshots
 
 ![](https://raw.githubusercontent.com/chai2010/opencv.go/master/examples/screenshot/windows/player.jpg)
 
+**Cameras**
+
+![](https://raw.githubusercontent.com/chai2010/opencv.go/master/examples/screenshot/windows/cam.jpg)
+
 
 BUGS
 ====
