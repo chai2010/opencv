@@ -64,19 +64,19 @@ Screenshots
 
 **Edge**
 
-![](https://raw.githubusercontent.com/chai2010/opencv.go/master/examples/screenshot/windows/edge.jpg)
+[![](https://raw.githubusercontent.com/chai2010/opencv.go/master/examples/screenshot/windows/edge.jpg)](https://github.com/chai2010/opencv.go/blob/master/examples/edge.go)
 
 **Inpaint**
 
-![](https://raw.githubusercontent.com/chai2010/opencv.go/master/examples/screenshot/windows/inpaint.jpg)
+[![](https://raw.githubusercontent.com/chai2010/opencv.go/master/examples/screenshot/windows/inpaint.jpg)](https://github.com/chai2010/opencv.go/blob/master/examples/inpaint.go)
 
 **Video Player**
 
-![](https://raw.githubusercontent.com/chai2010/opencv.go/master/examples/screenshot/windows/player.jpg)
+[![](https://raw.githubusercontent.com/chai2010/opencv.go/master/examples/screenshot/windows/player.jpg)](https://github.com/chai2010/opencv.go/blob/master/examples/player.go)
 
 **Cameras**
 
-![](https://raw.githubusercontent.com/chai2010/opencv.go/master/examples/screenshot/windows/cam.jpg)
+[![](https://raw.githubusercontent.com/chai2010/opencv.go/master/examples/screenshot/windows/cam.jpg)](https://github.com/chai2010/opencv.go/blob/master/examples/cam.go)
 
 
 BUGS
