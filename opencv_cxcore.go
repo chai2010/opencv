@@ -56,5 +56,5 @@ func (p *IplImage) At(x, y int) color.Color {
 }
 
 func (p *IplImage) PixOffset(x, y int) int {
-	return y*p.GetWidthStep()+x
+	return y*p.GetWidthStep() + x
 }

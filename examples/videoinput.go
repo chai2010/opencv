@@ -32,16 +32,16 @@ var (
 func main() {
 	flag.Parse()
 
-	opencv.SetVerbose(*flagVerbose)
-	opencv.SetComMultiThreaded(*flagMulti)
-
-	divices := opencv.ListDevices()
-	fmt.Printf("divices num: %d\n", len(divices))
-
 	vi := opencv.NewVideoInput()
 	defer vi.Release()
 
+	divices := vi.ListDevices()
+	fmt.Printf("divices num: %d\n", len(divices))
+
+	vi.SetVerbose(*flagVerbose)
+	vi.SetComMultiThreaded(*flagMulti)
 	vi.SetUseCallback(*flagUseCallback)
+
 	for i, v := range divices {
 		fmt.Printf("SetupDevice: divicesId = %d, name = %v\n", i, v)
 		vi.SetupDevice(i)
