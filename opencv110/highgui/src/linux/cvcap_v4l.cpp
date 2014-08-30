@@ -2781,6 +2781,7 @@ protected:
 bool CvCaptureCAM_V4L_CPP::open( int index )
 {
     close();
+    printf("CvCaptureCAM_V4L_CPP::open %d\n", index);
     captureV4L = icvCaptureFromCAM_V4L(index);
     return captureV4L != 0;
 }

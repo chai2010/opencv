@@ -5,8 +5,12 @@
 package opencv
 
 /*
-#cgo CFLAGS : -I./opencv110/cxcore/include -I./opencv110/cv/include -I./opencv110/cvaux/include  -I./opencv110/ml/include -I./opencv110/highgui/include
-#cgo LDFLAGS: -L. -lopencv110
+#cgo CFLAGS : -I./opencv110/cxcore/include -I./opencv110/cv/include -I./opencv110/cvaux/include  -I./opencv110/ml/include -I./opencv110/highgui/include -DCV_NO_BACKWARD_COMPATIBILITY
+#cgo linux CXXFLAGS: -Wunused -DHAVE_CAMV4L2 -DHAVE_CAMV4L
+#cgo windows LDFLAGS: -L. -lopencv110
+#cgo linux LDFLAGS: -L. -lopencv110 -lm -ldl -lstdc++ -lgstapp-0.10
+
+#cgo linux pkg-config: gtk+-2.0 gstreamer-0.10 libxine
 
 #include "opencv.h"
 */

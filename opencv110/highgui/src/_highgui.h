@@ -53,7 +53,7 @@
 #include <assert.h>
 
 #ifndef WIN32
-#include "cvconfig.h"
+//#include "cvconfig.h"
 #else
 void  FillBitmapInfo( BITMAPINFO* bmi, int width, int height, int bpp, int origin );
 #endif

@@ -229,11 +229,6 @@ CV_IMPL CvCapture * cvCreateFileCapture (const char * filename)
     //    result = cvCreateFileCapture_Win32 (filename);
     //#endif
 
-    #ifdef HAVE_XINE
-    if (! result)
-        result = cvCreateFileCapture_XINE (filename);
-    #endif
-
     #ifdef HAVE_GSTREAMER
     if (! result)
         result = cvCreateCapture_GStreamer (CV_CAP_GSTREAMER_FILE, filename);
@@ -243,6 +238,11 @@ CV_IMPL CvCapture * cvCreateFileCapture (const char * filename)
     if (! result)
         result = cvCreateFileCapture_FFMPEG_proxy (filename);
     //#endif
+
+    #ifdef HAVE_XINE
+    if (! result)
+        result = cvCreateFileCapture_XINE (filename);
+    #endif
 
     #ifdef HAVE_QUICKTIME
     if (! result)

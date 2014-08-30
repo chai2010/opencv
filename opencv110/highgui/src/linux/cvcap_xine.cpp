@@ -784,7 +784,7 @@ public:
     CvCaptureAVI_XINE_CPP() { captureXINE = 0; }
     virtual ~CvCaptureAVI_XINE_CPP() { close(); }
 
-    virtual bool open( int index );
+    virtual bool open( const char* filename );
     virtual void close();
 
     virtual double getProperty(int);
@@ -796,10 +796,10 @@ protected:
     CvCaptureAVI_XINE* captureXINE;
 };
 
-bool CvCaptureAVI_XINE_CPP::open( int index )
+bool CvCaptureAVI_XINE_CPP::open( const char* filename )
 {
     close();
-    captureXINE = icvCaptureFromFile_XINE(index);
+    captureXINE = icvCaptureFromFile_XINE(filename);
     return captureXINE != 0;
 }
 
@@ -832,16 +832,15 @@ bool CvCaptureAVI_XINE_CPP::setProperty( int propId, double value )
     return captureXINE ? icvSetPropertyAVI_XINE( captureXINE, propId, value ) != 0 : false;
 }
 
-CvCapture* cvCreateCameraCapture_XINE( int index )
+CvCapture* cvCreateFileCapture_XINE(const char* filename)
 {
     CvCaptureAVI_XINE_CPP* capture = new CvCaptureAVI_XINE_CPP;
 
-    if( capture->open( index ))
+    if( capture->open( filename ))
         return capture;
 
     delete capture;
     return 0;
 }
-
 
 #undef NDEBUG
