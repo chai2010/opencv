@@ -49,6 +49,8 @@
 // use GStreamer to read a video
 //
 
+#ifdef HAVE_GSTREAMER
+
 #include <unistd.h>
 #include <string.h>
 #include <gst/gst.h>
@@ -801,3 +803,7 @@ CvCapture* cvCreateCapture_GStreamer( int type, const char* filename )
     delete capture;
     return 0;
 }
+
+#endif // HAVE_GSTREAMER
+
+

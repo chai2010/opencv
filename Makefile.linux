@@ -41,8 +41,8 @@ GLIB_LDFLAGS=`pkg-config glib-2.0 --libs`
 XINE_CCFLAGS=`pkg-config libxine --cflags` -DHAVE_XINE
 XINE_LDFLAGS=`pkg-config libxine --libs`
 
-FFMPEG_LIBS=libavdevice libavformat libavfilter libavcodec libswresample libswscale libavutil                          
-FFMPEG_CCFLAGS=$(shell pkg-config --cflags $(FFMPEG_LIBS)) -DHAVE_FFMPEG
+FFMPEG_LIBS=libavdevice libavformat libavfilter libavcodec libswscale libavutil                          
+FFMPEG_CCFLAGS=$(shell pkg-config --cflags $(FFMPEG_LIBS)) -DHAVE_FFMPEG -DHAVE_GENTOO_FFMPEG -DHAVE_FFMPEG_SWSCALE
 FFMPEG_LDFLAGS=$(shell pkg-config --libs $(FFMPEG_LIBS))
 
 GSTREAMER_CCFLAGS=`pkg-config gstreamer-0.10 --cflags` #-DHAVE_GSTREAMER

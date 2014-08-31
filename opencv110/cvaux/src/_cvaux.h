@@ -48,6 +48,7 @@
 #include "cvaux.h"
 #include "cxmisc.h"
 #include "_cvmatrix.h"
+#include "cvcompat.h"
 
 typedef unsigned short ushort;
 

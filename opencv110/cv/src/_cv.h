@@ -49,6 +49,7 @@
 
 #include "cv.h"
 #include "cxmisc.h"
+#include "cvcompat.h"
 #include <math.h>
 #include <assert.h>
 #include <string.h>

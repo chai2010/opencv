@@ -10,7 +10,7 @@ package opencv
 #cgo windows LDFLAGS: -L. -lopencv110
 #cgo linux LDFLAGS: -L. -lopencv110 -lm -ldl -lstdc++ -lgstapp-0.10
 
-#cgo linux pkg-config: gtk+-2.0 gstreamer-0.10 libxine
+#cgo linux pkg-config: gtk+-2.0 gstreamer-0.10 libxine libavdevice libavformat libavfilter libavcodec libswscale libavutil
 
 #include "opencv.h"
 */
