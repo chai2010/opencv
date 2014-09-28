@@ -11,7 +11,7 @@ import (
 	"fmt"
 	"log"
 
-	opencv "github.com/chai2010/opencv.go"
+	"github.com/chai2010/opencv"
 )
 
 var (

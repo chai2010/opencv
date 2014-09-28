@@ -8,7 +8,7 @@ Package opencv provides Go bindings for OpenCV 1.1.
 Install `GCC` or `MinGW` (http://tdm-gcc.tdragon.net/download) at first,
 and then run these commands:
 
-	1. `go get -d github.com/chai2010/opencv.go`
+	1. `go get -d github.com/chai2010/opencv`
 	2. `go generate` and `go install`
 	3. `go run hello.go`
 
@@ -25,7 +25,7 @@ Example:
 		"log"
 		"os"
 
-		opencv "github.com/chai2010/opencv.go"
+		"github.com/chai2010/opencv"
 	)
 
 	func main() {

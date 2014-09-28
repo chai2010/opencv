@@ -1,7 +1,7 @@
 Go bindings for OpenCV1.1
 =========================
 
-PkgDoc: [http://godoc.org/github.com/chai2010/opencv.go](http://godoc.org/github.com/chai2010/opencv.go)
+PkgDoc: [http://godoc.org/github.com/chai2010/opencv](http://godoc.org/github.com/chai2010/opencv)
 
 
 Install
@@ -10,7 +10,7 @@ Install
 Install `GCC` or `MinGW` ([download here](http://tdm-gcc.tdragon.net/download)) at first,
 and then run these commands:
 
-1. `go get -d github.com/chai2010/opencv.go`
+1. `go get -d github.com/chai2010/opencv`
 2. `go generate` and `go install`
 3. `go run hello.go`
 
@@ -29,7 +29,7 @@ import (
 	"log"
 	"os"
 
-	opencv "github.com/chai2010/opencv.go"
+	"github.com/chai2010/opencv"
 )
 
 func main() {
@@ -66,19 +66,19 @@ Screenshots
 
 **Edge**
 
-[![](https://raw.githubusercontent.com/chai2010/opencv.go/master/examples/screenshot/windows/edge.jpg)](https://github.com/chai2010/opencv.go/blob/master/examples/edge.go)
+[![](https://raw.githubusercontent.com/chai2010/opencv/master/examples/screenshot/windows/edge.jpg)](https://github.com/chai2010/opencv/blob/master/examples/edge.go)
 
 **Inpaint**
 
-[![](https://raw.githubusercontent.com/chai2010/opencv.go/master/examples/screenshot/windows/inpaint.jpg)](https://github.com/chai2010/opencv.go/blob/master/examples/inpaint.go)
+[![](https://raw.githubusercontent.com/chai2010/opencv/master/examples/screenshot/windows/inpaint.jpg)](https://github.com/chai2010/opencv/blob/master/examples/inpaint.go)
 
 **Video Player**
 
-[![](https://raw.githubusercontent.com/chai2010/opencv.go/master/examples/screenshot/windows/player.jpg)](https://github.com/chai2010/opencv.go/blob/master/examples/player.go)
+[![](https://raw.githubusercontent.com/chai2010/opencv/master/examples/screenshot/windows/player.jpg)](https://github.com/chai2010/opencv/blob/master/examples/player.go)
 
 **Cameras**
 
-[![](https://raw.githubusercontent.com/chai2010/opencv.go/master/examples/screenshot/windows/cam.jpg)](https://github.com/chai2010/opencv.go/blob/master/examples/cam.go)
+[![](https://raw.githubusercontent.com/chai2010/opencv/master/examples/screenshot/windows/cam.jpg)](https://github.com/chai2010/opencv/blob/master/examples/cam.go)
 
 
 BUGS

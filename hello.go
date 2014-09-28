@@ -11,7 +11,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/chai2010/opencv.go"
+	"github.com/chai2010/opencv"
 )
 
 func main() {
