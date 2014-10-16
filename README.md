@@ -14,6 +14,24 @@ and then run these commands:
 2. `go generate` and `go install`
 3. `go run hello.go`
 
+
+**Notes**
+
+If use `TDM-GCC`, and build error like this:
+
+	c:\tdm-gcc-64\x86_64-w64-mingw32\include\aviriff.h:3:25: error: 'refer' does not
+	 name a type
+	 * No warranty is given; refer to the file DISCLAIMER within this package.
+	 ...
+
+You need fix the `C:\TDM-GCC-64\x86_64-w64-mingw32\include\aviriff.h` header first:
+
+	** // fixit: ** -> /**
+	* This file is part of the mingw-w64 runtime package.
+	* No warranty is given; refer to the file DISCLAIMER within this package.
+	*/
+
+
 Example
 =======
 
