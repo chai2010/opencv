@@ -39,7 +39,7 @@ func main() {
 func GetFfmpegDll(filename string) (errRet error) {
 	f, err := os.Create(filename)
 	if err != nil {
-		return fmt.Errorf("failed to create %s: %s", filename, err)
+		return fmt.Errorf("failed to create %s: %v", filename, err)
 	}
 	defer f.Close()
 	defer func() {
@@ -55,13 +55,13 @@ func GetFfmpegDll(filename string) (errRet error) {
 
 	resp, err := client.Get(baseURL + filename)
 	if err != nil {
-		return fmt.Errorf("failed to download %s: %s", baseURL+filename, err)
+		return fmt.Errorf("failed to download %s: %v", baseURL+filename, err)
 	}
 	defer resp.Body.Close()
 
 	_, err = io.Copy(f, resp.Body)
 	if err != nil {
-		return fmt.Errorf("failed to write %s: %s", filename, err)
+		return fmt.Errorf("failed to write %s: %v", filename, err)
 	}
 	return nil
 }
