@@ -126,8 +126,8 @@ icvInitProcessorInfo( CvProcessorInfo* cpu_info )
         int id = 0;
         int64 cpuid_val;
         HKEY key = 0;
-       
-        cpu_info->count = (int)sys.dwNumberOfProcessors; 
+
+        cpu_info->count = (int)sys.dwNumberOfProcessors;
         unsigned long freq = 0, sz = sizeof(freq);
 
         if( RegOpenKeyEx( HKEY_LOCAL_MACHINE, "HARDWARE\\DESCRIPTION\\SYSTEM\\CentralProcessor\\0\\",
@@ -151,7 +151,7 @@ icvInitProcessorInfo( CvProcessorInfo* cpu_info )
             id = (features & ICV_CPUID_W7 & -256) | family;
 
         cpu_info->model = id == ICV_CPUID_W7 ? CV_PROC_IA32_WITH_SSE2 :
-                          id == ICV_CPUID_A6 ? CV_PROC_IA32_WITH_SSE : 
+                          id == ICV_CPUID_A6 ? CV_PROC_IA32_WITH_SSE :
                           id == ICV_CPUID_M6 ? CV_PROC_IA32_WITH_MMX :
                           CV_PROC_IA32_GENERIC;
     }
@@ -163,7 +163,7 @@ icvInitProcessorInfo( CvProcessorInfo* cpu_info )
             sys.dwProcessorType == PROCESSOR_ARCHITECTURE_IA64 )
             cpu_info->model = CV_PROC_IA64;
 #endif
-        if( QueryPerformanceFrequency( &freq ) ) 
+        if( QueryPerformanceFrequency( &freq ) )
             cpu_info->frequency = (double)freq.QuadPart;
     }
 #else
@@ -487,7 +487,7 @@ cvUseOptimized( int load_flag )
     CvModuleInfo* module;
     const CvProcessorInfo* cpu_info = icvGetProcessorInfo();
     int arch = CV_GET_PROC_ARCH(cpu_info->model);
-    
+
     // TODO: implement some more elegant way
     // to find the latest and the greatest IPP/MKL libraries
     static const char* opencv_sfx[] = { "100", "099", "097", 0 };
@@ -555,7 +555,7 @@ cvUseOptimized( int load_flag )
                     break;
                 }
                 #ifndef WIN32
-                // temporary workaround for MacOSX 
+                // temporary workaround for MacOSX
                 sprintf( plugins[i].name, DLL_PREFIX "%s%s" DLL_DEBUG_FLAG ".dylib",
                     plugins[i].basename, *suffix );
 
@@ -682,8 +682,8 @@ CV_IMPL  int64  cvGetTickCount( void )
         QueryPerformanceCounter( &counter );
         return (int64)counter.QuadPart;
 #else
-        timeval tv;
-        timezone tz;
+        struct timeval tv;
+        struct timezone tz;
         gettimeofday( &tv, &tz );
         return (int64)tv.tv_sec*1000000 + tv.tv_usec;
 #endif

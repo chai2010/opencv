@@ -43,6 +43,8 @@
 #include "_highgui.h"
 #include "cv.h"
 
+#if 0
+
 // Original implementation by   Mark Asbach
 //                              Institute of Communications Engineering
 //                              RWTH Aachen University
@@ -1589,3 +1591,5 @@ CvVideoWriter* cvCreateVideoWriter_QT( const char* filename, int fourcc,
     delete writer;
     return 0;
 }
+
+#endif

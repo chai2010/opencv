@@ -7,7 +7,7 @@ package opencv_test
 import (
 	"fmt"
 
-	opencv "github.com/chai2010/opencv.go"
+	opencv "github.com/chai2010/opencv"
 )
 
 func Example_version() {
