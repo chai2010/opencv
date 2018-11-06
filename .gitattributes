@@ -1,1 +1,2 @@
 opencv110/* linguist-vendored
+*.c linguist-language=go
